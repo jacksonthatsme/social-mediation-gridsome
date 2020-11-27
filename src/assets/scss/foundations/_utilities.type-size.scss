@@ -1,0 +1,27 @@
+// ------------------------------------------------------------------
+// UTILITIES: Type Size
+// ------------------------------------------------------------------
+
+.type-size--XXL {
+  @include type-size--XXL;
+}
+
+.type-size--XL {
+  @include type-size--XL;
+}
+
+.type-size--L {
+  @include type-size--L;
+}
+
+.type-size--M {
+  @include type-size--M;
+}
+
+.type-size--R {
+  @include type-size--R;
+}
+
+.type-size--S {
+  @include type-size--S;
+}

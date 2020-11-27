@@ -1,0 +1,31 @@
+@mixin type-size--XXL {
+  @include fluid-property(font-size, 48px, 70px);
+  @include fluid-property(line-height, 48px, 78px);
+  letter-spacing: -.02em;
+}
+
+@mixin type-size--XL {
+  @include fluid-property(font-size, 32px, 70px);
+  @include fluid-property(line-height, 40px, 78px);
+  letter-spacing: -.02em;
+}
+
+@mixin type-size--L {
+  @include fluid-property(font-size, 30px, 32px);
+  @include fluid-property(line-height, 34px, 40px);
+  letter-spacing: -.01em;
+}
+@mixin type-size--M {
+  @include fluid-property(font-size, 20px, 24px);
+  @include fluid-property(line-height, 28px, 32px);
+  letter-spacing: -.01em;
+}
+@mixin type-size--R {
+  @include fluid-property(font-size, 16px, 18px);
+  @include fluid-property(line-height, 24px, 32px);
+  letter-spacing: -.02em;
+}
+@mixin type-size--S {
+  @include fluid-property(font-size, 13px, 14px);
+  @include fluid-property(line-height, 24px, 30px);
+}
