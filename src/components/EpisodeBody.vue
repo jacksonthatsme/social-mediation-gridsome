@@ -17,7 +17,7 @@
       Panelists
     </div>
     <div class='episode__item__people'>
-
+      <PersonChip v-for="(person,index) in episode.panelists" :person=""></PersonChip>
     </div>
   </div>
 </div>
@@ -31,7 +31,7 @@ export default {
 
   components: {
     PersonChip
-  }
+  },
 
   props: ['episode']
 }
