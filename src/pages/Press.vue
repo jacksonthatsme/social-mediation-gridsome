@@ -14,7 +14,7 @@
       PageTitle
     },
     metaInfo: {
-      title: 'Contributors'
+      title: 'Press'
     }
   }
 </script>

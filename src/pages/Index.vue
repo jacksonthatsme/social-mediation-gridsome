@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <PageTitle>
-      {{$page.page.body}}
+      <!-- {{$page.page.body}} -->
     </PageTitle>
     <div class='section__label type-size--M'>
       Subscribe
@@ -36,7 +36,7 @@
       Latest Episodes
     </div>
     <section class='feed' data-section='feed'>
-      <EpisodeItem v-for="episode in $page.episodes.edges" :key="episode.node.id" :episode="episode.node"></EpisodeItem>
+      <!-- <EpisodeItem v-for="episode in $page.episodes.edges" :key="episode.node.id" :episode="episode.node"></EpisodeItem> -->
     </section>
   </Layout>
 </template>
@@ -72,26 +72,3 @@
   @include fluid-property(padding-top, 10px, 20px);
 }
 </style>
-
-<page-query>
-query {
-  page: pages(path: "index.md") {
-    body
-  }
-  episodes: allEpisode {
-    edges {
-      node {
-        title
-        body
-        path
-        date(format: "MMM de, Y")
-        panelists {
-          name
-          imgPath
-          img
-        }
-      }
-    }
-  }
-}
-</page-query>
