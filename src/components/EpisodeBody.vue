@@ -6,10 +6,10 @@
   <div class='episode__item__description'>
     <div class='episode__item__subhead'>
       Published
-      {{episode.date}}
+      {{episode.publishDate}}
     </div>
     <div class='episode__item__text formatted-text'>
-      {{episode.body | truncate(50, '...')}}
+      <FormattedText :blocks="episode._rawDescription"></FormattedText>
     </div>
   </div>
   <div class='episode__item__contributors'>
@@ -25,15 +25,21 @@
 
 <script>
 import PersonChip from '~/components/PersonChip.vue' 
+import FormattedText from '~/components/FormattedText.vue'
 
 export default {
   name: "EpisodeBody",
 
   components: {
-    PersonChip
+    PersonChip,
+    FormattedText
   },
 
-  props: ['episode']
+  props: ['episode'],
+
+  created: function() {
+    console.log(this)
+  }
 }
 </script>
 

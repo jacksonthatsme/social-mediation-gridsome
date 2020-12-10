@@ -11,13 +11,9 @@ export default {
   props: ['person'],
 
   computed: {
-    personImage: function () {
-      console.log(this.person.img)
-      return require('@/assets/images/' + this.person.img)
-    },
     bgImage: function () {
       return {
-        backgroundImage: `url(${this.personImage})` 
+        backgroundImage: `url(${this.person.image.asset.url})` 
       }
     }
   }
@@ -26,7 +22,6 @@ export default {
 
 <style lang="scss">
 .person-chip {
-  padding-top: 0;
   &__image {
     @include fluid-property((height, width), 36px, 48px);
     background-size: cover;
