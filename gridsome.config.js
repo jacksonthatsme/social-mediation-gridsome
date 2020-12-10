@@ -19,16 +19,17 @@ function addStyleResource (rule) {
 
 module.exports = {
   siteName: 'Gridsome',
-  plugins: [],
-
-  templates: {
-    Episode: [
-      {
-        path: '/episode/:slug',
-        component: './src/templates/Episode.vue'
+  plugins: [
+    {
+      use: 'gridsome-source-sanity',
+      options: {
+        projectId: 'sj1xa9ph',
+        dataset: 'production',
+        overlayDrafts: false,
+        watchMode: false,
       }
-    ]
-  },
+    }
+  ],
 
   chainWebpack (config) {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']

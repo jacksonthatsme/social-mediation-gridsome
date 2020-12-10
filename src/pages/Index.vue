@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <PageTitle>
-      {{$page.page.body}}
+      <FormattedText :blocks="$page.thisPage.edges[0].node._rawBody"></FormattedText>
     </PageTitle>
     <div class='section__label type-size--M'>
       Subscribe
@@ -45,16 +45,18 @@
   import PageTitle from '~/components/PageTitle.vue'
   import Bttn from '~/components/Bttn.vue'
   import EpisodeItem from '~/components/EpisodeItem.vue'
+  import FormattedText from '~/components/FormattedText.vue'
 
   export default {
     components: {
       PageTitle,
       Bttn,
-      EpisodeItem
+      EpisodeItem,
+      FormattedText
     },
     metaInfo: {
       title: 'Social Mediation'
-    }
+    },
   }
 </script>
 
@@ -75,20 +77,27 @@
 
 <page-query>
 query {
-  page: pages(path: "index.md") {
-    body
-  }
-  episodes: allEpisode {
-    edges {
+  thisPage: allSanityPage(filter: {slug: {current: {eq: "index"}}}) {
+  	edges {
       node {
         title
-        body
-        path
-        date(format: "MMM de, Y")
+        _rawBody
+      }
+    }
+  }
+  episodes: allSanityEpisode {
+    edges {
+      node {
+      	title
+        publishDate(format: "MMM DD, Y")
+        _rawDescription
         panelists {
           name
-          imgPath
-          img
+          image {
+            asset {
+              url
+            }
+          }
         }
       }
     }

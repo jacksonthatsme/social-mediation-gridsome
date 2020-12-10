@@ -26,14 +26,12 @@ export default {
 
 <page-query>
 query ($id: ID!) {
-  episode(id: $id) {
+  sanityEpisode(id: $id) {
     title
-    body
-    date(format: "MMM de, Y")
+    _rawbody
+    publishDate(format: "MMM DD, Y")
     panelists {
       name
-      imgPath
-      img
     }
   }
 }

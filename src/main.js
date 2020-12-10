@@ -2,10 +2,12 @@
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
 import DefaultLayout from '~/layouts/Default.vue'
+import PortableText from 'sanity-blocks-vue-component'
 import '~/assets/scss/base.scss'
 
 export default function (Vue, { router, head, isClient }) {
   Vue.component('Layout', DefaultLayout)
+  Vue.component('PortableText', PortableText);
 
   var filter = function(text, length, clamp){
     clamp = clamp || '...';
