@@ -36,10 +36,6 @@ export default {
   },
 
   props: ['episode'],
-
-  created: function() {
-    console.log(this)
-  }
 }
 </script>
 

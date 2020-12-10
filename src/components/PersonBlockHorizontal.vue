@@ -8,15 +8,6 @@
       <div class="person-block__name">{{ person.name }}</div>
       <div class="person-block__bio">{{ person.bio }}</div>
       <PersonLinks :person="person"></PersonLinks>
-      <!-- <div class="person-block__social__wrapper">
-        {% for link in include.links %}
-          <a href="{{ link.url }}" class="person-block__social__icon">
-            <svg class=''>
-              <use xlink:href="#icon--{{ link.id | downcase }}"></use>
-            </svg>
-          </a>
-        {% endfor %}
-      </div> -->
     </div>
   </section>
 </template>
@@ -36,9 +27,6 @@ export default {
       }
     }
   },
-  created: function() {
-    console.log(this)
-  }
 }
 </script>
 

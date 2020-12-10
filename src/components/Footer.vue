@@ -42,7 +42,6 @@
   position: fixed;
   width: 100vw;
   bottom: 0;
-  z-index: 8;
 
   &__header {
     grid-column: 1 / 25;

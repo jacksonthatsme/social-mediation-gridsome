@@ -7,18 +7,23 @@
     <div class='section__label'>
       Panelists
     </div>
-
+    <section class='panelists'>
+      <PersonBlockVertical v-for="person in $page.panelists.edges" :key="person.node.id" :person="person.node"></PersonBlockVertical>
+    </section>
   </Layout>
 </template>
 
 <script>
   import PageTitle from '~/components/PageTitle.vue'
   import PersonBlockHorizontal from '~/components/PersonBlockHorizontal.vue'
+  import PersonBlockVertical from '~/components/PersonBlockVertical.vue'
+
 
   export default {
     components: {
       PageTitle,
-      PersonBlockHorizontal
+      PersonBlockHorizontal,
+      PersonBlockVertical,
     },
     metaInfo: {
       title: 'Contributors'
@@ -32,6 +37,9 @@
     @include fluid-property(padding-top, 40px, 60px);
     @include type-size--L;
   }
+}
+.panelists {
+  @include three-up-grid;
 }
 </style>
 

@@ -3,10 +3,10 @@
     <PageTitle>
       <FormattedText :blocks="$page.thisPage.edges[0].node._rawBody"></FormattedText>
     </PageTitle>
-    <div class='section__label type-size--M'>
+    <SectionLabel>
       Subscribe
-    </div>
-    <section class='bttn__wrapper' data-section='subscribe'>
+    </SectionLabel>
+    <BttnWrapper>
       <Bttn url="https://youtube.com" bg-color="green" alignment="left">
         <svg class='icon bttn__icon'>
           <use xlink:href='#icon--spotify'></use>
@@ -31,10 +31,10 @@
         <br>
         Podcasts
       </Bttn>
-    </section>
-    <div class='section__label type-size--M'>
+    </BttnWrapper>
+    <SectionLabel>
       Latest Episodes
-    </div>
+    </SectionLabel>
     <section class='feed' data-section='feed'>
       <EpisodeItem v-for="episode in $page.episodes.edges" :key="episode.node.id" :episode="episode.node"></EpisodeItem>
     </section>
@@ -46,13 +46,17 @@
   import Bttn from '~/components/Bttn.vue'
   import EpisodeItem from '~/components/EpisodeItem.vue'
   import FormattedText from '~/components/FormattedText.vue'
+  import SectionLabel from '~/components/SectionLabel.vue'
+  import BttnWrapper from '~/components/BttnWrapper.vue'
 
   export default {
     components: {
       PageTitle,
       Bttn,
       EpisodeItem,
-      FormattedText
+      FormattedText,
+      SectionLabel,
+      BttnWrapper,
     },
     metaInfo: {
       title: 'Social Mediation'
@@ -61,12 +65,6 @@
 </script>
 
 <style lang="scss">
-.section {
-  &__label {
-    @include fluid-property(padding-top, 40px, 60px);
-    @include type-size--L;
-  }
-}
 
 .bttn__wrapper {
   @include three-up-grid;
