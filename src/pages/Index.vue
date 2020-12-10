@@ -89,6 +89,9 @@ query {
       	title
         publishDate(format: "MMM DD, Y")
         _rawDescription
+        slug {
+          current
+        }
         panelists {
           name
           image {

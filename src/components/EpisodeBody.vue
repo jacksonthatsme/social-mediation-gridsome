@@ -1,7 +1,7 @@
 <template>
 <div class='episode__item__body'>
   <div class="episode__item__media">
-    {{episode.media}}
+    <!-- {{episode.media}} -->
   </div>
   <div class='episode__item__description'>
     <div class='episode__item__subhead'>

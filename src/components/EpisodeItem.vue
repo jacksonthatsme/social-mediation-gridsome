@@ -1,6 +1,6 @@
 <template>
   <div class='episode__item'>
-  <g-link :to="episode.path">
+  <g-link :to="{path: '/episodes/' + episode.slug.current}">
       <div class='episode__item__title'>
       {{episode.title}}
       </div>

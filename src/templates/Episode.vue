@@ -1,9 +1,9 @@
 <template>
   <Layout>
     <PageTitle>
-      {{ $page.episode.title }}
+      {{ $page.sanityEpisode.title }}
     </PageTitle>
-    <EpisodeBody :episode="$page.episode"></EpisodeBody>
+    <EpisodeBody :episode="$page.sanityEpisode"></EpisodeBody>
   </Layout>
 </template>
 
@@ -18,8 +18,12 @@ export default {
   },
   metaInfo() {
     return {
-      title: this.$page.post.title
+      title: this.title
     }
+  },
+
+  created: function() {
+    console.log(this)
   }
 }
 </script>
@@ -28,10 +32,15 @@ export default {
 query ($id: ID!) {
   sanityEpisode(id: $id) {
     title
-    _rawbody
     publishDate(format: "MMM DD, Y")
+    _rawDescription
     panelists {
       name
+      image {
+        asset {
+          url
+        }
+      }
     }
   }
 }

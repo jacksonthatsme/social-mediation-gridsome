@@ -10,4 +10,33 @@ module.exports = function (api) {
       }
     `)
   })
+  api.createPages(async ({ graphql, createPage }) => {
+    const { data } = await graphql(`{
+      allSanityEpisode {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }`)
+
+    data.allSanityEpisode.edges.forEach(({ node }) => {
+      createPage({
+        path: `/episodes/${node.slug.current}`,
+        component: './src/templates/Episode.vue',
+        context: {
+          id: node.id,
+          slug: node.slug.current,
+          title: node.title,
+          body: node._rawBody,
+          date: node.publishDate,
+          panelists: node.panelists
+        }
+      })
+    })
+  })
 }
