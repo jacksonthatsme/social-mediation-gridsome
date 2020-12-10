@@ -32,10 +32,11 @@
         Podcasts
       </Bttn>
     </section>
+    <div class='section__label type-size--M'>
+      Latest Episodes
+    </div>
     <section class='feed' data-section='feed'>
-      <div v-for="edge in $page.episodes.edges" :key="edge.node.id">
-        <h2>{{ edge.node.title }}</h2>
-      </div>
+      <EpisodeItem v-for="episode in $page.episodes.edges" :key="episode.node.id" :episode="episode.node"></EpisodeItem>
     </section>
   </Layout>
 </template>
@@ -43,11 +44,13 @@
 <script>
   import PageTitle from '~/components/PageTitle.vue'
   import Bttn from '~/components/Bttn.vue'
+  import EpisodeItem from '~/components/EpisodeItem.vue'
 
   export default {
     components: {
       PageTitle,
-      Bttn
+      Bttn,
+      EpisodeItem
     },
     metaInfo: {
       title: 'Social Mediation'
@@ -75,10 +78,18 @@ query {
   page: pages(path: "index.md") {
     body
   }
-  episodes: allEpisodes {
+  episodes: allEpisode {
     edges {
       node {
         title
+        body
+        path
+        date(format: "MMM de, Y")
+        panelists {
+          name
+          imgPath
+          img
+        }
       }
     }
   }

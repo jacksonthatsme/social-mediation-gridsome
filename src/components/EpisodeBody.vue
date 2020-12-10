@@ -9,7 +9,7 @@
       {{episode.date}}
     </div>
     <div class='episode__item__text formatted-text'>
-
+      {{episode.body | truncate(50, '...')}}
     </div>
   </div>
   <div class='episode__item__contributors'>
@@ -17,7 +17,7 @@
       Panelists
     </div>
     <div class='episode__item__people'>
-      <PersonChip v-for="(person,index) in episode.panelists" :person=""></PersonChip>
+      <PersonChip v-for="person in episode.panelists" :key="person.id" :person="person"></PersonChip>
     </div>
   </div>
 </div>
@@ -45,7 +45,7 @@ export default {
 
     &__title {
       @include type-size--L;
-      @extend .font-weight--bold;
+      font-weight: 700;
     }
 
     &__media {
@@ -70,7 +70,7 @@ export default {
     }
 
     &__link {
-      @extend .font-weight--bold;
+      font-weight: 700;
       color: $color--red;
       display: inline;
     }
@@ -84,7 +84,7 @@ export default {
 
     &__subhead {
       @include type-size--R;
-      @extend .font-weight--bold;
+      font-weight: 700;
     }
 
     &__people {

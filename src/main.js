@@ -5,6 +5,14 @@ import DefaultLayout from '~/layouts/Default.vue'
 import '~/assets/scss/base.scss'
 
 export default function (Vue, { router, head, isClient }) {
-  // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
+
+  var filter = function(text, length, clamp){
+    clamp = clamp || '...';
+    var node = document.createElement('div');
+    node.innerHTML = text;
+    var content = node.textContent;
+    return content.length > length ? content.split(" ").splice(0, length).join(" ") + clamp : content;
+  };
+  Vue.filter('truncate', filter);
 }

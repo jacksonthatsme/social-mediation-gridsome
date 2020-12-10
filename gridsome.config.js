@@ -19,10 +19,17 @@ function addStyleResource (rule) {
 
 module.exports = {
   siteName: 'Gridsome',
-  plugins: []
-}
+  plugins: [],
 
-module.exports = {
+  templates: {
+    Episode: [
+      {
+        path: '/episode/:slug',
+        component: './src/templates/Episode.vue'
+      }
+    ]
+  },
+
   chainWebpack (config) {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
 

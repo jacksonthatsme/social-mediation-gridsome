@@ -68,4 +68,94 @@ export default {
     display: none;
   }
 }
+
+.blob--orange {
+  fill: #FF7145;
+  visibility: hidden;
+
+  @media screen and (min-width: $BP--M) {
+    visibility: visible;
+  }
+}
+
+.blob--blue {
+  fill: $color--blue;
+}
+
+.blob--yellow {
+  fill: $color--yellow;
+}
+
+.blob--green {
+  fill: $color--green;
+}
+
+.check {
+  fill: #000000;
+}
+
+.cross {
+  fill: #000000;
+  visibility: hidden;
+
+  @media screen and (min-width: $BP--M) {
+    visibility: visible;
+  }
+}
+
+.blue__brow--L {
+  fill: #000000;
+}
+
+.blue__eye--L {
+  fill: #000000;
+}
+
+.blue__eye--R {
+  fill: #000000;
+}
+
+.blue__brow--R {
+  fill: #000000;
+}
+
+.blue__mouth {
+  fill: #000000;
+}
+
+.blue__hand {
+  fill: #000000;
+}
+
+.yellow__brow--L {
+  fill: #000000;
+}
+
+.yellow__brow--R {
+  fill: #000000;
+}
+
+.yellow__mouth {
+  fill: #000000;
+}
+
+.yellow__eye--L {
+  fill: #000000;
+}
+
+.yellow__eye--R {
+  fill: #000000;
+}
+
+.yellow__eye--R {
+  fill: #000000;
+}
+
+.yellow__hand {
+  fill: #000000;
+}
+.logotype {
+  fill: #000000;
+}
+
 </style>
