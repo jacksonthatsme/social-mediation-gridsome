@@ -9,20 +9,23 @@
             </svg>
           </g-link>
         </div>
-        <div class='fixed-menu__toggle' data-js='menu__toggle'>
-          <svg class='fixed-menu__background fixed-menu__icon' data-js='menu__background' preserveAspectRatio='none' viewBox='0 0 32 32'>
+        <div class='fixed-menu__toggle'
+          ref='menu__toggle'
+          @click.prevent='toggle'
+        >
+          <svg class='fixed-menu__background fixed-menu__icon' ref='menuBackground' preserveAspectRatio='none' viewBox='0 0 32 32'>
             <use xlink:href='#blob--01'></use>
           </svg>
-          <svg class='fixed-menu__activate fixed-menu__icon' data-js='menu__activate' viewBox='0 0 32 32'>
+          <svg class='fixed-menu__activate fixed-menu__icon' ref='menuIconActivate' viewBox='0 0 32 32'>
             <use xlink:href='#icon--menu'></use>
           </svg>
-          <svg class='fixed-menu__close fixed-menu__icon' data-js='menu__close' viewBox='0 0 32 32'>
+          <svg class='fixed-menu__close fixed-menu__icon' ref='menuIconClose' viewBox='0 0 32 32'>
             <use xlink:href='#icon--X'></use>
           </svg>
         </div>
         <div class='fixed-menu__nav' data-js='navigation__list'>
           <ul class='fixed-menu__nav__list'>
-            <li class='fixed-menu__nav__item mobile__menu__element' data-js='navigation__list__item site__menu__element'>
+            <li class='fixed-menu__nav__item mobile__menu__element' ref='siteMenuElement'>
               <g-link to="/">
                 Episodes
                 <div class="circled-line" data-js="circledLine">
@@ -32,7 +35,7 @@
                 </div>
               </g-link>
             </li>
-            <li class='fixed-menu__nav__item mobile__menu__element' data-js='navigation__list__item site__menu__element'>
+            <li class='fixed-menu__nav__item mobile__menu__element' ref='siteMenuElement'>
               <g-link to="/contributors/">
                 Contributors
                 <div class="circled-line" data-js="circledLine">
@@ -42,7 +45,7 @@
                 </div>
               </g-link>
             </li>
-            <li class='fixed-menu__nav__item mobile__menu__element' data-js='navigation__list__item site__menu__element'>
+            <li class='fixed-menu__nav__item mobile__menu__element' ref='siteMenuElement'>
               <g-link to="/press/">
                 Press
                 <div class="circled-line" data-js="circledLine">
@@ -52,7 +55,7 @@
                 </div>
               </g-link>
             </li>
-            <li class='fixed-menu__nav__item mobile__menu__element' data-js='navigation__list__item site__menu__element'>
+            <li class='fixed-menu__nav__item mobile__menu__element' ref='siteMenuElement'>
               <g-link to="/news/">
                 News
                 <div class="circled-line" data-js="circledLine">
@@ -62,7 +65,7 @@
                 </div>
               </g-link>
             </li>
-            <li class='fixed-menu__nav__item mobile__menu__element' data-js='navigation__list__item site__menu__element'>
+            <li class='fixed-menu__nav__item mobile__menu__element' ref='siteMenuElement'>
               <g-link to="/contact/">
                 Contact
                 <div class="circled-line" data-js="circledLine">
@@ -95,6 +98,41 @@
     </div>
   </menu>
 </template>
+
+<script>
+import gsap from 'gsap';
+import { ExpoScaleEase } from "gsap/EasePack";
+gsap.registerPlugin(ExpoScaleEase);
+
+export default {
+
+  data: function () {
+    return {
+      isMenuActive: false,
+      menuAnimation: gsap.timeline()
+    }
+  },
+
+  methods: {
+    toggle: function () {
+      this.$store.commit('toggleMenu')
+      if (this.$store.state.isMenuActive) {
+        this.menuAnimation.to(this.$refs.menuBackground, {duration: .4, scaleX: 1.2, scaleY: 1.2})
+                          .to(this.$refs.menuBackground, {duration: 1.1, ease: ExpoScaleEase.easeOut, scaleX: 60, scaleY: 60})
+                          .to(this.$refs.menuIconActivate, { duration: .1, opacity: 0}, "-=1.1")
+                          .to(this.$refs.menuIconClose, {duration: .8, opacity: 1}, "-=1")
+                          .to(this.$refs.siteMenuElement, {opacity: 1, stagger: .08}, "-=1");
+      } else {
+        this.menuAnimation.to(this.$refs.menuBackground, {duration: 1.1, scaleX: 1.2, scaleY: 1.2, ease: ExpoScaleEase.easeIn})
+                          .to(this.$refs.menuBackground, {duration: .4, scaleX: 1.6, scaleY: 1.6})
+                          .to(this.$refs.siteMenuElement, {opacity: 0, stagger: .06}, "-=1.5")
+                          .to(this.$refs.menuIconClose, {duration: 0, opacity: 0}, "-=.4")
+                          .to(this.$refs.menuIconActivate, {duration: .8, opacity: 1}, "-=.2");
+      }
+    },
+  }
+}
+</script>
 
 <style lang="scss">
 .fixed-menu {

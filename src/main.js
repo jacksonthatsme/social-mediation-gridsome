@@ -4,9 +4,23 @@
 import DefaultLayout from '~/layouts/Default.vue'
 import PortableText from 'sanity-blocks-vue-component'
 import '~/assets/scss/base.scss'
+import Vuex from 'vuex'
 
-export default function (Vue, { router, head, isClient }) {
-  Vue.component('Layout', DefaultLayout)
+export default function (Vue, { router, head, isClient, appOptions }) {
+  Vue.use(Vuex)
+
+  appOptions.store = new Vuex.Store({
+    state: {
+      isMenuActive: false
+    },
+    mutations: {
+      toggleMenu (state) {
+        state.isMenuActive = !state.isMenuActive
+      }
+    }
+  });
+
+  Vue.component('Layout', DefaultLayout);
   Vue.component('PortableText', PortableText);
 
   var filter = function(text, length, clamp){

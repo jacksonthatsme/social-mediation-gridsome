@@ -10,7 +10,9 @@
     "axios": "^0.21.0",
     "gridsome": "^0.7.0",
     "gridsome-source-sanity": "^1.0.5",
-    "sanity-blocks-vue-component": "^0.1.0"
+    "gsap": "^3.5.1",
+    "sanity-blocks-vue-component": "^0.1.0",
+    "vuex": "^3.6.0"
   },
   "devDependencies": {
     "node-sass": "^5.0.0",

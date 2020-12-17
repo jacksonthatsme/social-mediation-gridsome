@@ -29,12 +29,31 @@ module.exports = function (api) {
         path: `/episodes/${node.slug.current}`,
         component: './src/templates/Episode.vue',
         context: {
-          id: node.id,
-          slug: node.slug.current,
-          title: node.title,
-          body: node._rawBody,
-          date: node.publishDate,
-          panelists: node.panelists
+          id: node.id
+        }
+      })
+    })
+  })
+  api.createPages(async ({ graphql, createPage }) => {
+    const { data } = await graphql(`{
+      allSanityPost {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }`)
+
+    data.allSanityPost.edges.forEach(({ node }) => {
+      createPage({
+        path: `/posts/${node.slug.current}`,
+        component: './src/templates/Post.vue',
+        context: {
+          id: node.id
         }
       })
     })

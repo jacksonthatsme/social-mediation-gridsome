@@ -18,7 +18,7 @@ function addStyleResource (rule) {
 
 
 module.exports = {
-  siteName: 'Gridsome',
+  siteName: 'Social Mediation',
   plugins: [
     {
       use: 'gridsome-source-sanity',

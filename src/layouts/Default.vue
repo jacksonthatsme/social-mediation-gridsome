@@ -1,5 +1,7 @@
 <template>
-  <div class="layout">
+  <div class="layout"
+  v-bind:class="{ 'menu-active' : this.$store.state.isMenuActive }"
+  >
     <SvgDefs />
     <Footer />
     <div class="content-container" data-js="content-container">
@@ -7,9 +9,7 @@
         <div class='grid-container'>
           <main class="content-wrapper">
             <div class='content__logo'>
-              <svg viewBox='0 -10 300 260'>
-                <use xlink:href='#logo'></use>
-              </svg>
+              <Logo></Logo>
             </div>
             <slot />
           </main>
@@ -31,13 +31,15 @@ query {
 <script>
 import Footer from '~/components/Footer.vue'
 import SvgDefs from '~/components/SvgDefs.vue'
+import Logo from '~/components/Logo.vue'
 import Menu from '~/components/Menu.vue'
 
 export default {
   components: {
     Footer,
     SvgDefs,
-    Menu
+    Menu,
+    Logo
   }
 }
 </script>
@@ -67,6 +69,12 @@ export default {
   @media screen and (min-width: $BP--M) {
     display: none;
   }
+}
+
+.menu-active {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .blob--orange {
