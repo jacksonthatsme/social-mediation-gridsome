@@ -29,7 +29,8 @@ module.exports = function (api) {
         path: `/episodes/${node.slug.current}`,
         component: './src/templates/Episode.vue',
         context: {
-          id: node.id
+          id: node.id,
+          path: `/episodes/${node.slug.current}`
         }
       })
     })
@@ -56,6 +57,18 @@ module.exports = function (api) {
           id: node.id
         }
       })
+    })
+  })
+  api.loadSource(({ addSchemaResolvers }) => {
+    addSchemaResolvers({
+      SanityEpisode: {
+        path: {
+          type: 'String',
+          resolve(obj) {
+            return `/episodes/${obj.slug.current}`
+          }
+        }
+      }
     })
   })
 }

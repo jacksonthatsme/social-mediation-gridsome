@@ -39,7 +39,6 @@
 .footer {
   @include fluid-property((padding-bottom, padding-top), 40px, 60px);
   background-color: #FFCE43;
-  position: fixed;
   width: 100vw;
   bottom: 0;
 

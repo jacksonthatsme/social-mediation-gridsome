@@ -8,8 +8,11 @@
       Published
       {{episode.publishDate}}
     </div>
-    <div class='episode__item__text formatted-text'>
-      <FormattedText :blocks="episode._rawDescription"></FormattedText>
+    <div class='episode__item__text formatted-text' ref="episodeItemText">
+      <!-- <FormattedText :blocks="episode._rawDescription"></FormattedText> -->
+      <!-- <div v-html="episodeDescriptionHTML.outerHTML | truncate(200)"></div> -->
+      <div :inner-html.prop="episodeDescriptionHTML.outerHTML | truncate(50, '...')"></div>
+
     </div>
   </div>
   <div class='episode__item__contributors'>
@@ -33,6 +36,25 @@ export default {
   components: {
     PersonChip,
     FormattedText
+  },
+
+  filters: {
+    truncate: function(text, length, clamp) {
+      return text.length > length ? text.split(" ").splice(0, length).join(" ") + clamp : text;
+    }
+  },
+
+  computed: {
+    episodeDescriptionHTML: function() {
+      let formattedTextClass = Vue.extend(FormattedText)
+      let formattedTextInstance = new formattedTextClass({
+        propsData: {
+          blocks: this.episode._rawDescription
+        }
+      })
+      formattedTextInstance.$mount()
+      return formattedTextInstance.$el
+    }
   },
 
   props: ['episode'],

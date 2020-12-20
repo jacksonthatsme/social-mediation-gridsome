@@ -89,6 +89,7 @@ query {
       	title
         publishDate(format: "MMM DD, Y")
         _rawDescription
+        path
         slug {
           current
         }

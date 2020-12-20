@@ -1,6 +1,6 @@
 <template>
   <div class='episode__item'>
-  <g-link :to="{path: '/episodes/' + episode.slug.current}">
+  <g-link :to="episode.path">
       <div class='episode__item__title'>
       {{episode.title}}
       </div>
@@ -19,7 +19,10 @@ export default {
     EpisodeBody
   },
 
-  props: ['episode']
+  props: ['episode'],
+  created: function () {
+    console.log(this.episode)
+  }
 }
 </script>
 

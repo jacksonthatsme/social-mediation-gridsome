@@ -44,6 +44,11 @@
 <style lang="scss">
 .blob--orange {
   fill: #FF7145;
+  visibility: hidden;
+
+  @media screen and (min-width: $BP--M) {
+    visibility: visible;
+  }
 }
 
 .blob--blue {
@@ -64,6 +69,11 @@
 
 .cross {
   fill: #000000;
+  visibility: hidden;
+
+  @media screen and (min-width: $BP--M) {
+    visibility: visible;
+  }
 }
 
 .blue__brow--L {

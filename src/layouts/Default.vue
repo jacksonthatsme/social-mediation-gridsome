@@ -1,22 +1,23 @@
 <template>
-  <div class="layout"
-  v-bind:class="{ 'menu-active' : this.$store.state.isMenuActive }"
+  <div
+    class="site-wrapper"
+    v-bind:class="{ 'menu-is-active' : this.$store.state.isMenuActive }"
   >
     <SvgDefs />
-    <Footer />
-    <div class="content-container" data-js="content-container">
-      <div class='margin-container'>
-        <div class='grid-container'>
-          <main class="content-wrapper">
-            <div class='content__logo'>
-              <Logo></Logo>
-            </div>
-            <slot />
-          </main>
+    <div class='margin-container'>
+      <div class='grid-container'>
+        <div class="menu-wrapper">
+          <div class='site__logo'>
+            <Logo />
+          </div>
+          <Menu />
         </div>
+        <main class="content-wrapper">
+          <slot />
+        </main>
       </div>
     </div>
-    <Menu />
+    <Footer />
   </div>
 </template>
 
@@ -45,13 +46,20 @@ export default {
 </script>
 
 <style lang="scss">
-.content-container {
-  background-color: white;
-  @include fluid-property(margin-bottom, 452px, 274px);
-  position: relative;
-  z-index: 9;
-  width: 100vw;
-  overflow-x: hidden;
+
+.page-wrapper {
+  align-items: baseline;
+}
+.menu-wrapper {
+  grid-column: 1 / 25;
+
+  @media screen and (min-width: $BP--M) {
+    grid-column: 1 / 7;
+    position: sticky;
+    top: 0;
+    position: -webkit-sticky;
+    align-self: start;
+  }
 }
 
 .content-wrapper {
@@ -64,106 +72,25 @@ export default {
   }
 }
 
-.content__logo {
-  @include fluid-property((margin-left, margin-right), -35px, -180px);
+.site__logo {
+  @media screen and (max-width: $BP--M) {
+    @include fluid-property((margin-left, margin-right), -35px, -180px);
+  }
+  
   @media screen and (min-width: $BP--M) {
-    display: none;
+    @include fluid-property(padding-top, 40px, 50px, $min-screen: $BP--M);
+    transform: translatex(calc-interpolation(-20px, -35px, $min-screen: $BP--M));
+  }
+ 
+  @media screen and (min-width: $max-width) {
+    transform: translatex(-35px);
   }
 }
 
-.menu-active {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-
-.blob--orange {
-  fill: #FF7145;
-  visibility: hidden;
-
-  @media screen and (min-width: $BP--M) {
-    visibility: visible;
-  }
-}
-
-.blob--blue {
-  fill: $color--blue;
-}
-
-.blob--yellow {
-  fill: $color--yellow;
-}
-
-.blob--green {
-  fill: $color--green;
-}
-
-.check {
-  fill: #000000;
-}
-
-.cross {
-  fill: #000000;
-  visibility: hidden;
-
-  @media screen and (min-width: $BP--M) {
-    visibility: visible;
-  }
-}
-
-.blue__brow--L {
-  fill: #000000;
-}
-
-.blue__eye--L {
-  fill: #000000;
-}
-
-.blue__eye--R {
-  fill: #000000;
-}
-
-.blue__brow--R {
-  fill: #000000;
-}
-
-.blue__mouth {
-  fill: #000000;
-}
-
-.blue__hand {
-  fill: #000000;
-}
-
-.yellow__brow--L {
-  fill: #000000;
-}
-
-.yellow__brow--R {
-  fill: #000000;
-}
-
-.yellow__mouth {
-  fill: #000000;
-}
-
-.yellow__eye--L {
-  fill: #000000;
-}
-
-.yellow__eye--R {
-  fill: #000000;
-}
-
-.yellow__eye--R {
-  fill: #000000;
-}
-
-.yellow__hand {
-  fill: #000000;
-}
-.logotype {
-  fill: #000000;
-}
+// .menu-is-active {
+//   height: 100vh;
+//   width: 100vw;
+//   overflow: hidden;
+// }
 
 </style>
