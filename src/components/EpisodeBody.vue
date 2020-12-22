@@ -1,17 +1,15 @@
 <template>
 <div class='episode__item__body'>
   <div class="episode__item__media">
-    <!-- {{episode.media}} -->
+    <MediaButton :media="episode.media"></MediaButton>
   </div>
   <div class='episode__item__description'>
     <div class='episode__item__subhead'>
       Published
       {{episode.publishDate}}
     </div>
-    <div class='episode__item__text formatted-text' ref="episodeItemText">
-      <!-- <FormattedText :blocks="episode._rawDescription"></FormattedText> -->
-      <!-- <div v-html="episodeDescriptionHTML.outerHTML | truncate(200)"></div> -->
-      <div :inner-html.prop="episodeDescriptionHTML.outerHTML | truncate(50, '...')"></div>
+    <div class='episode__item__text'>
+      <FormattedText :content="episode._rawDescription" :truncate="this.truncated" :link="this.truncated? episode.path : undefined"></FormattedText>
 
     </div>
   </div>
@@ -29,35 +27,26 @@
 <script>
 import PersonChip from '~/components/PersonChip.vue' 
 import FormattedText from '~/components/FormattedText.vue'
+import MediaButton from '~/components/MediaButton.vue'
 
 export default {
   name: "EpisodeBody",
 
   components: {
     PersonChip,
-    FormattedText
+    FormattedText,
+    MediaButton
   },
 
-  filters: {
-    truncate: function(text, length, clamp) {
-      return text.length > length ? text.split(" ").splice(0, length).join(" ") + clamp : text;
+  props: {
+    episode: {
+      type: Object
+    },
+    truncated: {
+      type: Boolean,
+      default: false
     }
-  },
-
-  computed: {
-    episodeDescriptionHTML: function() {
-      let formattedTextClass = Vue.extend(FormattedText)
-      let formattedTextInstance = new formattedTextClass({
-        propsData: {
-          blocks: this.episode._rawDescription
-        }
-      })
-      formattedTextInstance.$mount()
-      return formattedTextInstance.$el
-    }
-  },
-
-  props: ['episode'],
+  }
 }
 </script>
 

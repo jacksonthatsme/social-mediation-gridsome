@@ -1,6 +1,4 @@
 const axios = require('axios')
-const fs = require('fs')
-const siteId = '5c0dde440e5255498a363560'
 
 module.exports = function (api) {
   api.createSchema(({ addSchemaTypes }) => {
@@ -26,7 +24,7 @@ module.exports = function (api) {
 
     data.allSanityEpisode.edges.forEach(({ node }) => {
       createPage({
-        path: `/episodes/${node.slug.current}`,
+        path: `/episode/${node.slug.current}`,
         component: './src/templates/Episode.vue',
         context: {
           id: node.id,
@@ -51,7 +49,7 @@ module.exports = function (api) {
 
     data.allSanityPost.edges.forEach(({ node }) => {
       createPage({
-        path: `/posts/${node.slug.current}`,
+        path: `/news/${node.slug.current}`,
         component: './src/templates/Post.vue',
         context: {
           id: node.id
@@ -65,8 +63,16 @@ module.exports = function (api) {
         path: {
           type: 'String',
           resolve(obj) {
-            return `/episodes/${obj.slug.current}`
+            return `/episode/${obj.slug.current}`
           }
+        }
+      },
+      SanityPost: {
+        path: {
+          type: 'String',
+          resolve(obj) {
+            return `/news/${obj.slug.current}`
+          }          
         }
       }
     })

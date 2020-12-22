@@ -5,7 +5,7 @@
       {{episode.title}}
       </div>
   </g-link>
-  <EpisodeBody :episode="episode"></EpisodeBody>
+  <EpisodeBody :episode="episode" :truncated="true"></EpisodeBody>
   </div>
 </template>
 
@@ -20,9 +20,6 @@ export default {
   },
 
   props: ['episode'],
-  created: function () {
-    console.log(this.episode)
-  }
 }
 </script>
 

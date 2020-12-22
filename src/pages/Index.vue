@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <PageTitle>
-      <FormattedText :blocks="$page.thisPage.edges[0].node._rawBody"></FormattedText>
+      <FormattedText :content="$page.thisPage.edges[0].node._rawBody"></FormattedText>
     </PageTitle>
     <SectionLabel>
       Subscribe
@@ -86,9 +86,11 @@ query {
   episodes: allSanityEpisode {
     edges {
       node {
+        id
       	title
         publishDate(format: "MMM DD, Y")
         _rawDescription
+        media
         path
         slug {
           current

@@ -1,29 +1,72 @@
 <template>
-  <PortableText :blocks="blocks" :serializers="serializers" class="formatted-text"/>
+  <div class="formatted-text">
+    <div v-if="this.truncate" :inner-html.prop="rawHTML.outerHTML | truncate(this.length, this.clamp)" ref="truncatedText"></div>
+    <g-link v-if="this.link" :to="this.link">
+      {{this.cta}}
+    </g-link>
+    <div v-else>
+      <BlocksToHTML :blocks="this.content"></BlocksToHTML>
+    </div>
+  </div>
 </template>
 
 <script>
-import PortableText from "sanity-blocks-vue-component";
+import BlocksToHTML from '~/components/BlocksToHTML.vue'
+
 export default {
+
   components: {
-    PortableText
+    BlocksToHTML
   },
-  props: {
-    blocks: {
-      type: Array,
-      default: () => []
+
+  filters: {
+    truncate: function(text, length, clamp) {
+      return text.length > length ? text.split(" ").splice(0, length).join(" ") + clamp : text;
     }
   },
-  data() {
-    return {
-      serializers: {
-        types: {
-          link: function(children, mark) {
-            return '<a href={mark.href}>{children}</a>'
-          }
+
+  computed: {
+    rawHTML: function() {
+      let BlockSerializerClass = Vue.extend(BlocksToHTML)
+      let BlockSerializerInstance = new BlockSerializerClass({
+        propsData: {
+          blocks: this.content
         }
-      }
-    };
+      })
+      BlockSerializerInstance.$mount()
+      return BlockSerializerInstance.$el
+    },
+  },
+
+  mounted: function () {
+    if (this.link) {
+      let readMoreLink = `<a href="${this.link}"`
+    }
+  },
+
+  props: {
+    content: {
+      type: [Object, Array]
+    },
+    truncate: {
+      type: Boolean,
+      default: false
+    },
+    length: {
+      type: Number,
+      default: 50
+    },
+    clamp: {
+      type: String,
+      default: "..."
+    },
+    cta: {
+      type: String,
+      default: "Read More"
+    },
+    link: {
+      type: String
+    }
   }
 }
 </script>

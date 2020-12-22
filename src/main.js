@@ -2,7 +2,7 @@
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
 import DefaultLayout from '~/layouts/Default.vue'
-import PortableText from 'sanity-blocks-vue-component'
+// import PortableText from 'sanity-blocks-vue-component'
 import '~/assets/scss/base.scss'
 import Vuex from 'vuex'
 
@@ -32,14 +32,6 @@ export default function (Vue, { router, head, isClient, appOptions }) {
   })
 
   Vue.component('Layout', DefaultLayout);
-  Vue.component('PortableText', PortableText);
+  // Vue.component('PortableText', PortableText);
 
-  // var filter = function(text, length, clamp){
-  //   clamp = clamp || '...';
-  //   var node = document.createElement('div');
-  //   node.innerHTML = text;
-  //   var content = node.textContent;
-  //   return content.length > length ? content.split(" ").splice(0, length).join(" ") + clamp : content;
-  // };
-  // Vue.filter('truncate', filter);
 }

@@ -9,7 +9,7 @@
     <g-image v-if="post.image" :src="post.image.asset.url"></g-image>
     <div class="post__body">
       <div class="post__content">
-        <FormattedText :blocks="post._rawDescription"></FormattedText>
+        <FormattedText :content="post._rawDescription"></FormattedText>
       </div>
       <div class="post__author">
         <PersonChip v-for="person in post.authors" :key="person.id" :person="person"></PersonChip>

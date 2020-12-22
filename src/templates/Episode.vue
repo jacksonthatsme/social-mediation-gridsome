@@ -34,6 +34,7 @@ query ($id: ID!) {
     title
     publishDate(format: "MMM DD, Y")
     _rawDescription
+    media
     panelists {
       name
       image {

@@ -34,6 +34,7 @@ query ($id: ID!) {
     title
     publishDate(format: "MMM DD, Y")
     _rawDescription
+    path
     image {
       asset {
         url
@@ -53,6 +54,7 @@ query ($id: ID!) {
       node {
         title
         publishDate(format: "MMM DD, Y")
+        path
         slug {
           current
         }

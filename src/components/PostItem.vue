@@ -1,5 +1,5 @@
 <template>
-  <g-link :to="{path: '/posts/' + post.slug.current}">
+  <g-link :to="post.path">
     <div class="post-item">
       <div class="post-item__content">
         <div class="post-item__date">{{ post.publishDate }}</div>

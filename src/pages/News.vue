@@ -52,6 +52,7 @@ query {
         title
         publishDate(format: "MMM DD, Y")
         _rawDescription
+        path
         image {
           asset {
             url
