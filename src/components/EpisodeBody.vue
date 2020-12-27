@@ -1,7 +1,9 @@
 <template>
 <div class='episode__item__body'>
   <div class="episode__item__media">
-    <MediaButton :media="episode.media"></MediaButton>
+    <div v-if="episode.media">
+      <MediaButton :media="episode.media"></MediaButton>
+    </div>
   </div>
   <div class='episode__item__description'>
     <div class='episode__item__subhead'>
@@ -70,8 +72,8 @@ export default {
       grid-template-columns: 1fr;
       @include type-size--R;
       @include fluid-property(grid-column-gap, 20px, 60px);
-      @include fluid-property(grid-row-gap, 10px, 20px);
-      @include fluid-property(padding-top, 20px, 40px);
+      @include fluid-property(grid-row-gap, 20px, 30px);
+      @include fluid-property(padding-top, 20px, 30px);
 
       @media screen and (min-width: $BP--S) {
         grid-template-columns: repeat(3, 1fr);

@@ -1,11 +1,11 @@
 <template>
   <component
     :is="tag"
+    :to="link"
     :href="url"
-    :is-disabled="disabled"
     :bg-color="bgColor"
     :alignment="alignment"
-    :class="[setBttnClass, setBgColor, setAlignment]"
+    :class="[setBttnClass, setBgColor, setAlignment, setDisabled]"
   >
     <slot/>
   </component>
@@ -19,6 +19,9 @@ export default {
     tag: {
       type: String,
       default: "a"
+    },
+    link: {
+      type: String
     },
     url: {
       type: String
@@ -56,6 +59,12 @@ export default {
           break;
         default:
           break;
+      }
+    },
+
+    setDisabled: function() {
+      return {
+        "bttn--disabled": this.disabled == true
       }
     },
 

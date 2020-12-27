@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <PageTitle>
-      <FormattedText :blocks="$page.thisPage.edges[0].node._rawBody"></FormattedText>
+      <FormattedText :content="$page.thisPage.edges[0].node._rawBody"></FormattedText>
     </PageTitle>
     <SectionLabel>
       Downloads
@@ -16,9 +16,6 @@
     </SectionLabel>
     <BttnWrapper>
       <PressMention v-for="mention in $page.pressMentions.edges" :key="mention.node.id" :mention="mention.node"></PressMention>
-      <!-- {% for mention in page.Mentions %}
-        {% include mention-block.html headline=mention.Headline author=mention.Author logo=mention.Logo url=mention.URL %}
-      {% endfor %} -->
     </BttnWrapper>
 
   </Layout>

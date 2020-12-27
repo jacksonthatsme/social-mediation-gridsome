@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <PageTitle>
-      <FormattedText :blocks="$page.thisPage.edges[0].node._rawBody"></FormattedText>
+      <FormattedText :content="$page.thisPage.edges[0].node._rawBody"></FormattedText>
     </PageTitle>
     <SectionLabel>
       Email Us

@@ -38,6 +38,7 @@
     <section class='feed' data-section='feed'>
       <EpisodeItem v-for="episode in $page.episodes.edges" :key="episode.node.id" :episode="episode.node"></EpisodeItem>
     </section>
+    <Pagination :info="$page.episodes.pageInfo"/>
   </Layout>
 </template>
 
@@ -48,6 +49,8 @@
   import FormattedText from '~/components/FormattedText.vue'
   import SectionLabel from '~/components/SectionLabel.vue'
   import BttnWrapper from '~/components/BttnWrapper.vue'
+  import Pagination from '~/components/Pagination.vue'
+
 
   export default {
     components: {
@@ -57,6 +60,7 @@
       FormattedText,
       SectionLabel,
       BttnWrapper,
+      Pagination
     },
     metaInfo: {
       title: 'Social Mediation'
@@ -74,7 +78,7 @@
 </style>
 
 <page-query>
-query {
+query ($page: Int) {
   thisPage: allSanityPage(filter: {slug: {current: {eq: "index"}}}) {
   	edges {
       node {
@@ -83,15 +87,25 @@ query {
       }
     }
   }
-  episodes: allSanityEpisode {
+  episodes: allSanityEpisode(perPage: 4, page: $page) @paginate {
+    pageInfo {
+      perPage
+      totalPages
+      currentPage
+      totalItems
+      hasPreviousPage
+      hasNextPage
+      isFirst
+      isLast
+    }
     edges {
       node {
         id
       	title
         publishDate(format: "MMM DD, Y")
         _rawDescription
-        media
         path
+        media
         slug {
           current
         }
