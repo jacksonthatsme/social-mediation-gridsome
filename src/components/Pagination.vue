@@ -10,7 +10,7 @@
     </template>
 
     <div class="pagination__trail">
-      <template v-for="page in this.pages">
+      <template v-for="page in this.pageRange">
         <g-link :class="['pagination__number',(page.isCurrentPage? 'pagination__number--active':'')]" :to="numberUrl(page.pageNumber)" :key="page.pageNumber">
           {{page.pageNumber}}
         </g-link>
@@ -41,11 +41,6 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      pages: []
-    }
-  },
 
   methods: {
     numberUrl: function(page) {
@@ -55,19 +50,6 @@ export default {
       else {
         return `/episodes/${page}`
       }
-    }
-  },
-
-  mounted: function() {
-    let data = this
-    for (var i = 0; i < this.info.totalPages; i++) {
-      let pageNumber = i + 1
-      var isCurrentPage = false
-
-      if (data.info.currentPage == pageNumber) {
-        isCurrentPage = true
-      }
-      data.pages.push({'pageNumber': pageNumber, 'isCurrentPage': isCurrentPage})
     }
   },
 
@@ -84,6 +66,19 @@ export default {
       if(this.info.hasNextPage) {
         return `/episodes/${this.info.currentPage + 1}`
       }
+    },
+    pageRange: function() {
+      const range = [];
+      for (var i = 0; i < this.info.totalPages; i++) {
+        let pageNumber = i + 1
+        var isCurrentPage = false
+
+        if (this.info.currentPage == pageNumber) {
+          isCurrentPage = true
+        }
+        range.push({'pageNumber': pageNumber, 'isCurrentPage': isCurrentPage})
+      }
+      return range;
     },
   },
 }

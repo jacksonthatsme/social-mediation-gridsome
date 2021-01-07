@@ -23,9 +23,13 @@ export default {
   computed: {
     pageTitle: function() {
       let info = this.$page.allSanityEpisode.pageInfo
-      console.log(info)
-      let topInteger = info.currentPage
-      return 'Episodes 6–7'
+      let offsetInteger = ((info.currentPage - 1) * info.perPage)
+      let topInteger = info.totalItems - offsetInteger
+      let bottomInteger = (topInteger - (info.perPage - 1))
+      if (bottomInteger < 1) {
+        bottomInteger = 1
+      } 
+      return `Episodes ${topInteger} – ${bottomInteger}`
     }
   }
 }
