@@ -18,6 +18,7 @@
       </div>
     </div>
     <Footer />
+    <AudioPlayer url="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3" playerId="this-is-the-title-of-the-twelth-episode" />
   </div>
 </template>
 
@@ -34,13 +35,15 @@ import Footer from '~/components/Footer.vue'
 import SvgDefs from '~/components/SvgDefs.vue'
 import Logo from '~/components/Logo.vue'
 import Menu from '~/components/Menu.vue'
+import AudioPlayer from '~/components/AudioPlayer.vue'
 
 export default {
   components: {
     Footer,
     SvgDefs,
     Menu,
-    Logo
+    Logo,
+    AudioPlayer
   }
 }
 </script>

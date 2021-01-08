@@ -11,7 +11,8 @@ export default function (Vue, { router, head, isClient, appOptions }) {
   window.Vue = Vue;
   appOptions.store = new Vuex.Store({
     state: {
-      isMenuActive: false
+      isMenuActive: false,
+      isAudioPlayerActive: false
     },
     mutations: {
       toggleMenu (state) {
