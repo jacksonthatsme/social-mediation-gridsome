@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="player__remaining-time">{{ this.remainingTime }}</div>
-      <div class="player__progress"></div>
+      <div class="player__progress" v-bind:style="{ width: progressPercentage + '%' }"></div>
     </div>
   </div>
 </template>
@@ -74,7 +74,7 @@ export default {
       const audio = this.$refs.audio;
       if (audio) {
         let totalDuration = audio.duration
-        console.log(totalDuration)
+        this.audioDuration = totalDuration
         let elapsedSeconds = audio.currentTime
         let remainingTime = totalDuration - elapsedSeconds
         this.remainingTime = this.convertTime(remainingTime)
@@ -146,6 +146,12 @@ export default {
         }
       });
     })
+  },
+  computed: {
+    progressPercentage: function() {
+      let percentCompleted = ((this.playbackTime / this.audioDuration) * 100)
+      return percentCompleted
+    }
   }
 }
 </script>
@@ -221,7 +227,7 @@ export default {
   &__progress {
     position: absolute;
     height: 100%;
-    width: 60%;
+    width: 0%;
     background-color: $color--black;
     opacity: .15;
     top: 0;
